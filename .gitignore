@@ -1,2 +1,14 @@
-
+# Ignorar el entorno virtual de Python
 venv/
+.venv/
+
+# Ignorar archivos temporales y caché de Python
+__pycache__/
+*.pyc
+
+# Ignorar la base de datos local SQLite que crearemos hoy
+*.db
+
+# Anotaciones 
+anotaciones.md
+
