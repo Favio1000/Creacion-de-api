@@ -11,6 +11,12 @@ class UsuarioBase(BaseModel):
 class UsuarioCreate(UsuarioBase):
     pass  # No necesitamos campos adicionales para crear
 
+
+# Esquema para cuando se actualizan los datos de un usuario (Petición PUT)
+class UsuarioUpdate(UsuarioBase):
+    pass  # Hereda nombre y email. Si en el futuro quieres añadir campos opcionales, los pondrás aquí.
+
+
 # 3. Esquema de Respuesta: Lo que la API le devolverá al cliente (JSON de salida)
 # Incluye el 'id' que genera automáticamente la base de datos
 class UsuarioResponse(UsuarioBase):
@@ -22,3 +28,6 @@ class UsuarioResponse(UsuarioBase):
     model_config = {
         "from_attributes": True
     }
+# Esquema para mensajes genéricos de confirmación
+class MensajeRespuesta(BaseModel):
+    message: str
