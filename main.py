@@ -41,7 +41,7 @@ def crear_usuario(usuario: schemas.UsuarioCreate, db: Session = Depends(get_db))
 
 
 # 4. Endpoint para OBTENER todos los usuarios (GET)
-@app.get("/usuarios/", response_model=list[schemas.UsuarioResponse])
+@app.get("/usuarios/", response_model=list[schemas.UsuarioResponseConTareas])
 def listar_usuarios(db: Session = Depends(get_db)):  # noqa: B008
     usuarios = db.query(models.UsuarioModel).all()
     return usuarios
@@ -108,3 +108,40 @@ def actualizar_usuario(
     db.refresh(usuario)
 
     return usuario
+
+
+# 7. Endpoint para CREAR una tarea asignada a un usuario específico (POST)
+@app.post(
+    "/usuarios/{usuario_id}/tareas/", response_model=schemas.TareaResponse
+)
+def crear_tarea_para_usuario(
+    usuario_id: int,
+    tarea: schemas.TareaCreate,
+    db: Session = Depends(get_db),  # noqa: B008
+):
+    # Verificar primero si el usuario dueño de la tarea existe
+    usuario_existe = (
+        db.query(models.UsuarioModel)
+        .filter(models.UsuarioModel.id == usuario_id)
+        .first()
+    )
+    if not usuario_existe:
+        raise HTTPException(
+            status_code=404, detail="Usuario no encontrado para asignarle la tarea."
+        )
+
+    # Crear la tarea extrayendo los datos del JSON y amarrando el autor_id de la URL
+    nueva_tarea = models.TareaModel(**tarea.model_dump(), autor_id=usuario_id)
+
+    db.add(nueva_tarea)
+    db.commit()
+    db.refresh(nueva_tarea)
+
+    return nueva_tarea
+
+
+# 8. Endpoint para OBTENER todas las tareas generales (GET)
+@app.get("/tareas/", response_model=list[schemas.TareaResponse])
+def listar_tareas(db: Session = Depends(get_db)):  # noqa: B008
+    return db.query(models.TareaModel).all()
+

@@ -31,3 +31,36 @@ class UsuarioResponse(UsuarioBase):
 # Esquema para mensajes genéricos de confirmación
 class MensajeRespuesta(BaseModel):
     message: str
+
+# --- ESQUEMAS DE TAREAS ---
+
+
+# Campos comunes para crear/leer tareas
+class TareaBase(BaseModel):
+    titulo: str
+    descripcion: str
+
+
+# Lo que el cliente envía al crear una tarea
+class TareaCreate(TareaBase):
+    pass
+
+
+# Lo que la API devuelve al consultar una tarea
+class TareaResponse(TareaBase):
+    id: int
+    autor_id: int
+
+    model_config = {"from_attributes": True}
+
+
+# --- ACTUALIZACIÓN DEL ESQUEMA DE USUARIO ---
+# Modificamos la respuesta de usuario para que incluya su lista de tareas de forma automática
+class UsuarioResponseConTareas(UsuarioBase):
+    id: int
+    tareas: list[TareaResponse] = (
+        []
+    )  # Si no tiene tareas, devolverá una lista vacía
+
+    model_config = {"from_attributes": True}
+
