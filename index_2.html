@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Probar API de usuarios</title>
+  </head>
+  <body>
+    <h1>Probar API de usuarios</h1>
+    <button id="consultar" type="button">Consultar GET /usuarios</button>
+    <pre id="resultado" aria-live="polite"></pre>
+
+    <script>
+      const consultar = document.querySelector("#consultar");
+      const resultado = document.querySelector("#resultado");
+
+      consultar.addEventListener("click", async () => {
+        consultar.disabled = true;
+        resultado.textContent = "Consultando…";
+
+        try {
+          const respuesta = await fetch("http://127.0.0.1:8000/usuarios", {
+            method: "GET",
+            headers: { Accept: "application/json" },
+          });
+
+          const cuerpo = await respuesta.text();
+          resultado.textContent = `HTTP ${respuesta.status}\n${cuerpo}`;
+        } catch (error) {
+          resultado.textContent = `Error de conexión: ${error.message}`;
+        } finally {
+          consultar.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

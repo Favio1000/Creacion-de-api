@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Probar creación de usuario</title>
+  </head>
+  <body>
+    <h1>Crear usuario</h1>
+    <button id="enviar" type="button">Enviar POST</button>
+    <pre id="resultado" aria-live="polite"></pre>
+
+    <script>
+      const boton = document.querySelector("#enviar");
+      const resultado = document.querySelector("#resultado");
+
+      boton.addEventListener("click", async () => {
+        boton.disabled = true;
+        resultado.textContent = "Enviando…";
+
+        try {
+          const respuesta = await fetch("http://127.0.0.1:8000/usuarios/", {
+            method: "POST",
+            headers: {
+              Accept: "/",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ nombre: "faf", email: "sfsfsf" }),
+          });
+
+          const cuerpo = await respuesta.text();
+          resultado.textContent = `HTTP ${respuesta.status}\n${cuerpo}`;
+        } catch (error) {
+          resultado.textContent = `Error de conexión: ${error.message}`;
+        } finally {
+          boton.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
