@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import Base, engine
+from database.database import Base, engine
 
 # Importamos los módulos que acabamos de crear en la carpeta routers
 from routers import equipos, ligas

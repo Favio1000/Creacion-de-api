@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from schemas.schemas_equipos import EquipoResponse
+
 
 # 1. Esquema Base: Define los campos comunes que todo Usuario siempre tendrá
 class LigaBase(BaseModel):
@@ -33,26 +35,6 @@ class MensajeRespuesta(BaseModel):
     message: str
 
 # --- ESQUEMAS DE TAREAS ---
-
-
-# Campos comunes para crear/leer tareas
-class EquipoBase(BaseModel):
-    nombre_equipo: str
-    ciudad: str
-
-
-# Lo que el cliente envía al crear una tarea
-class EquipoCreate(EquipoBase):
-    pass
-
-
-# Lo que la API devuelve al consultar una tarea
-class EquipoResponse(EquipoBase):
-    id: int
-    encargado_id: int
-
-    model_config = {"from_attributes": True}
-
 
 # --- ACTUALIZACIÓN DEL ESQUEMA DE USUARIO ---
 # Modificamos la respuesta de usuario para que incluya su lista de Equipos de forma automática

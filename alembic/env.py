@@ -7,7 +7,7 @@ from sqlalchemy import engine_from_config, pool
 # 2. Importar el paquete de modelos para que Base.metadata conozca todas las tablas
 import models  # noqa: F401
 from alembic import context
-from database import Base
+from database.database import Base
 
 # 1. Asegurar que la raíz del proyecto esté en sys.path para importar nuestros módulos
 sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), "..")))
