@@ -19,7 +19,7 @@
         resultado.textContent = "Consultando…";
 
         try {
-          const respuesta = await fetch("http://127.0.0.1:8000/usuarios", {
+          const respuesta = await fetch("http://127.0.0.1:8000/ligas", {
             method: "GET",
             headers: { Accept: "application/json" },
           });

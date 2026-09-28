@@ -1,0 +1,10 @@
+.padre {
+  display: flex;
+  gap: 30px;
+}
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

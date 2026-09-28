@@ -6,7 +6,7 @@
     <title>Probar creación de usuario</title>
   </head>
   <body>
-    <h1>Crear usuario</h1>
+    <h1>Crear liga</h1>
     <button id="enviar" type="button">Enviar POST</button>
     <pre id="resultado" aria-live="polite"></pre>
 
@@ -19,13 +19,12 @@
         resultado.textContent = "Enviando…";
 
         try {
-          const respuesta = await fetch("http://127.0.0.1:8000/usuarios/", {
+          const respuesta = await fetch("http://127.0.0.1:8000/ligas/", {
             method: "POST",
             headers: {
               Accept: "/",
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ nombre: "faf", email: "sfsfsf" }),
           });
 
           const cuerpo = await respuesta.text();

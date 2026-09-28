@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Api</title>
+  </head>
+  <body>
+    <h1>Api</h1>
+    <form class="padre" action="">
+      <div class="contenedor">
+        <div class="contenedor">
+          <label for="id_liga">ID liga</label>
+          <input id="id_liga" type="text" />
+        </div>
+          <div class="contenedor">
+            <label for="nombre_liga">Nombre de la liga</label>
+            <input id="nombre_liga" type="text" />
+          </div>
+
+          <div class="contenedor">
+            <label for="pais_liga">Pais de la liga</label>
+            <input id="pais_liga" type="text" />
+          </div>
+        </div>
+
+        <div class="contenedor">
+          <div class="contenedor">
+            <label for="nombre_equipo">Nombre de equipo</label>
+            <input id="nombre_equipo" type="text" />
+          </div>
+
+          <div class="contenedor">
+            <label for="ciudad_equipo">Ciudad del equipo</label>
+            <input id="ciudad_equipo" type="text" />
+          </div>
+        </div>
+      </div>
+    </form>
+    <section>
+      <div>
+        <h3>ligas</h3>
+        <button id="consultar" class="boton">leer</button>
+        <button id="enviar" class="boton">enviar</button>
+        <button id="actualizar" class="boton">actualizar</button>
+        <button id="eliminar" class="boton">eliminar</button>
+      </div>
+
+      <div>
+        <h3>equipos</h3>
+        <button class="boton">leer</button>
+        <button class="boton">enviar</button>
+      </div>
+      <pre id="resultado" aria-live="polite"></pre>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
