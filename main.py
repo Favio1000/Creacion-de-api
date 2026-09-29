@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.database import Base, engine
 
 # Importamos los módulos que acabamos de crear en la carpeta routers
-from routers import equipos, ligas
+from routers import league_router, team_router
 
 # 1. Crear las tablas físicas en SQLite al arrancar la aplicación
 # Si el archivo 'sql_app.db' no existe, SQLAlchemy lo creará automáticamente con la tabla 'usuarios'
@@ -23,7 +23,7 @@ app.add_middleware(
 
 
 # Conectamos las rutas secundarias a la aplicación principal
-app.include_router(ligas.router)
-app.include_router(equipos.router)
+app.include_router(league_router.router)
+app.include_router(team_router.router)
 
 
