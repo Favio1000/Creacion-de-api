@@ -8,6 +8,7 @@ __pycache__/
 
 # Ignorar la base de datos local SQLite que crearemos hoy
 *.db
+*.sqlite3
 
 # Anotaciones 
 anotaciones.md

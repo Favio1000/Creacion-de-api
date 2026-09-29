@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 import schemas.schemas_ligas as schemas
@@ -16,7 +16,7 @@ router = APIRouter(prefix="/ligas", tags=["ligas"])
 
 # 1. CREAR (POST)
 #@app_post_en_router  
-@router.post("/", response_model=schemas.LigaResponse)
+@router.post("/", response_model=schemas.LigaResponse, status_code = status.HTTP_201_CREATED)
 def crear(liga: schemas.LigaCreate, db: Session = Depends(get_db)):  # noqa: B008
     return crear_liga(liga, db)
 

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 import schemas.schemas_equipos as schemas
@@ -10,7 +10,7 @@ router = APIRouter(tags=["Equipos"])
 
 # 1. CREAR TAREA PARA UN USUARIO
 @router.post(
-    "/ligas/{liga_id}/equipos/", response_model=schemas.EquipoResponse
+    "/ligas/{liga_id}/equipos/", response_model=schemas.EquipoResponse, status_code=status.HTTP_201_CREATED
 )
 def crear(
     liga_id: int,

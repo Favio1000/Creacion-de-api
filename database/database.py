@@ -1,15 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# 1. Ruta de tu base de datos local SQLite
-# El archivo "sql_app.db" se creará automáticamente en la raíz de tu proyecto
-SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+from config.config_variables import DATABASE_URL
 
 # 2. Crear el motor de conexión (Engine)
 # 'connect_args={"check_same_thread": False}' es EXCLUSIVO de SQLite.
 # Permite que FastAPI use múltiples hilos para consultar la BD de forma segura.
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    DATABASE_URL, connect_args={"check_same_thread": False}
 )
 
 # 3. Crear una fábrica de sesiones (SessionLocal)
