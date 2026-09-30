@@ -1,5 +1,11 @@
+* {
+  font-family: sans-serif;
+}
+
 .padre {
   display: flex;
+  flex-direction: column;
+  width: 50%;
   gap: 30px;
 }
 
@@ -8,3 +14,15 @@
   flex-direction: column;
   gap: 10px;
 }
+
+/*.article {
+  background-color: rgb(175, 209, 218);
+  padding: 5px 20px;
+  border-radius: 15px;
+}
+
+.card-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}*/

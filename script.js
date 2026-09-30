@@ -6,7 +6,7 @@ consultar.addEventListener("click", async () => {
   resultado.textContent = "Consultando…";
 
   try {
-    const respuesta = await fetch("http://127.0.0.1:8000/ligas/", {
+    const respuesta = await fetch("http://127.0.0.1:8000/leagues/", {
       method: "GET",
       headers: { Accept: "application/json" },
     });
@@ -28,11 +28,11 @@ enviar.addEventListener("click", async () => {
   enviar.disabled = true;
   resultado.textContent = "Guardando datos…";
   const raw = JSON.stringify({
-    nombre_liga: nombre_liga.value,
-    pais: pais_liga.value,
+    league_name: nombre_liga.value,
+    country: pais_liga.value,
   });
   try {
-    const respuesta = await fetch("http://127.0.0.1:8000/ligas/", {
+    const respuesta = await fetch("http://127.0.0.1:8000/leagues/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -53,16 +53,18 @@ enviar.addEventListener("click", async () => {
 
 const id = document.querySelector("#id_liga");
 const actualizar = document.querySelector("#actualizar");
+const id_liga = document.querySelector("#id_liga");
 
 actualizar.addEventListener("click", async () => {
   actualizar.disabled = true;
   resultado.textContent = "Guardando datos…";
   const raw = JSON.stringify({
-    nombre_liga: nombre_liga.value,
-    pais: pais_liga.value,
+    id: id_liga,
+    league_name: nombre_liga.value,
+    country: pais_liga.value,
   });
   try {
-    const respuesta = await fetch(`http://127.0.0.1:8000/ligas/${id.value}`, {
+    const respuesta = await fetch(`http://127.0.0.1:8000/leagues/${id.value}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -87,11 +89,10 @@ eliminar.addEventListener("click", async () => {
   eliminar.disabled = true;
   resultado.textContent = "Guardando datos…";
   const raw = JSON.stringify({
-    nombre_liga: nombre_liga.value,
-    pais: pais_liga.value,
+    id: id_liga,
   });
   try {
-    const respuesta = await fetch(`http://127.0.0.1:8000/ligas/${id.value}`, {
+    const respuesta = await fetch(`http://127.0.0.1:8000/leagues/${id.value}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

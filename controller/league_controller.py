@@ -9,12 +9,12 @@ from database.database import get_db
 
 def create_league(league: schemas.LeagueCreate, db: Session = Depends(get_db)):  # noqa: B008
     # Verificar si la liga ya está registrado en la base de datos
-    liga_existente = (
+    league_exist = (
         db.query(models.LeagueModel)
         .filter(models.LeagueModel.league_name == league.league_name)
         .first()
     )
-    if liga_existente:
+    if league_exist:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El nombre de la liga ya está registrado."
