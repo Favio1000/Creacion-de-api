@@ -1,40 +1,61 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Probar creación de usuario</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Api</title>
   </head>
   <body>
-    <h1>Crear liga</h1>
-    <button id="enviar" type="button">Enviar POST</button>
-    <pre id="resultado" aria-live="polite"></pre>
+    <h1>Api</h1>
 
-    <script>
-      const boton = document.querySelector("#enviar");
-      const resultado = document.querySelector("#resultado");
+    <form class="padre" action="">
+      <div class="contenedor">
+        <h3>ligas</h3>
+        <div class="contenedor">
+          <label for="id_liga">ID liga</label>
+          <input id="id_liga" type="text" />
+        </div>
 
-      boton.addEventListener("click", async () => {
-        boton.disabled = true;
-        resultado.textContent = "Enviando…";
+        <div class="contenedor">
+          <label for="nombre_liga">Nombre de la liga</label>
+          <input id="nombre_liga" type="text" />
+        </div>
 
-        try {
-          const respuesta = await fetch("http://127.0.0.1:8000/ligas/", {
-            method: "POST",
-            headers: {
-              Accept: "/",
-              "Content-Type": "application/json",
-            },
-          });
+        <div class="contenedor">
+          <label for="pais_liga">Pais de la liga</label>
+          <input id="pais_liga" type="text" />
+        </div>
 
-          const cuerpo = await respuesta.text();
-          resultado.textContent = `HTTP ${respuesta.status}\n${cuerpo}`;
-        } catch (error) {
-          resultado.textContent = `Error de conexión: ${error.message}`;
-        } finally {
-          boton.disabled = false;
-        }
-      });
-    </script>
+        <div>
+          <button id="consultar" class="boton">leer</button>
+          <button id="enviar" class="boton">enviar</button>
+          <button id="actualizar" class="boton">actualizar</button>
+          <button id="eliminar" class="boton">eliminar</button>
+        </div>
+        <pre id="resultado" aria-live="polite"></pre>
+      </div>
+
+      <div class="contenedor">
+        <h3>Equipo</h3>
+        <div class="contenedor">
+          <label for="nombre_equipo">Nombre de equipo</label>
+          <input id="nombre_equipo" type="text" />
+        </div>
+
+        <div class="contenedor">
+          <label for="ciudad_equipo">Ciudad del equipo</label>
+          <input id="ciudad_equipo" type="text" />
+        </div>
+        <div>
+          <button id="consultar" class="boton">leer</button>
+          <button id="enviar" class="boton">enviar</button>
+          <button id="actualizar" class="boton">actualizar</button>
+          <button id="eliminar" class="boton">eliminar</button>
+        </div>
+        <pre id="resultado" aria-live="polite"></pre>
+      </div>
+    </form>
+    <script src="script.js"></script>
   </body>
 </html>
