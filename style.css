@@ -8,8 +8,8 @@ body {
   align-items: center;
   background-color: rgb(240, 249, 252);
   gap: 20px;
+  margin: 4em;
 }
-
 .padre {
   display: flex;
   flex-direction: column;
