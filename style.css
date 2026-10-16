@@ -1,7 +1,9 @@
 * {
   font-family: sans-serif;
 }
-
+body {
+  margin: 4em;
+}
 .padre {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,20 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+input {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid rgb(175, 209, 218);
+}
+button {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgba(17, 17, 17, 0.897);
+  color: white;
+  padding: 5px 10px;
 }
 
 /*.article {
