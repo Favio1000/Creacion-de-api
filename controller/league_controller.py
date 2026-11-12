@@ -32,11 +32,11 @@ def create_league(league: schemas.LeagueCreate, db: Session = Depends(get_db)): 
 
         return new_league
     
-    except SQLAlchemyError as error:
+    except SQLAlchemyError:
             db.rollback()
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Fallo en la creacion de liga en el servidor:{str(error)}"  # noqa: RUF010
+                detail="Fallo en la creacion de liga en el servidor" 
             )
 
 def list_league(db: Session = Depends(get_db)):  # noqa: B008
@@ -81,11 +81,11 @@ def update_league(
 
         return league
     
-    except SQLAlchemyError as error:
+    except SQLAlchemyError:
             db.rollback()
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Fallo en la actualizacion del servidor{str(error)}"  # noqa: RUF010
+                detail="Fallo en la actualizacion del servidor"
             )
     
 
@@ -111,10 +111,10 @@ def delete_league(league_id: int, db: Session = Depends(get_db)):  # noqa: B008
         return {"message": f"Liga con ID {league_id} eliminado correctamente."}
     
     
-    except SQLAlchemyError as error:
+    except SQLAlchemyError:
             db.rollback()
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Fallo en la actualizacion del servidor{str(error)}"  # noqa: RUF010
+                detail="Fallo en la eliminacion del servidor."  # noqa: RUF010
             )
     
